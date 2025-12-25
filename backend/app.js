@@ -1,3 +1,5 @@
+
+require("dotenv").config();
 const express = require('express');
 const app = express();
 const connectDB = require('./src/db/db.js');
@@ -8,7 +10,7 @@ const cookieParser = require('cookie-parser');
 
 
 connectDB();
-require("dotenv").config();
+
 
 app.use(express.json());
 app.use(cookieParser());
