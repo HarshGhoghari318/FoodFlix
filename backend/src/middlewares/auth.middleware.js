@@ -14,8 +14,9 @@ async function authFoodPartnerMiddleware(req, res, next) {
     const foodPartner = await foodPartnerModel.findById(decoded.id);
     
     req.foodPartner = foodPartner;
-
     next();
+
+    
     }
     catch(err){
         return res.status(401).json({ message: "Invalid token" });

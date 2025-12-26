@@ -1,6 +1,8 @@
 const foodModel = require("../models/food.model.js");
 const { uploadFile }= require("../services/storage.service.js");
 const {v4 : uuid} = require("uuid");
+
+
 async function createFood(req, res){
 
     const fileResult = await uploadFile(req.file.buffer, uuid());
@@ -18,6 +20,7 @@ async function createFood(req, res){
         food:foodData,
     })
 }
+
 
 async function getFoods(req, res){
     const foods = await foodModel.find();

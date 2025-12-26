@@ -1,4 +1,3 @@
-
 @import './theme.css';
 
 /* Container */
@@ -170,12 +169,113 @@
 .btn-primary:active { transform: translateY(1px); }
 .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
 
-/* Responsive */
-@media (min-width: 768px) {
-  .create-food-title { font-size: 1.6rem; }
+/* Prevent body scroll while uploading */
+body.uploading {
+    overflow: hidden;
 }
 
-/* Smooth theme transitions */
-.create-food-card,
-.field-group input,
-.field-group textarea { transition: background 200ms ease, color 200ms ease, border-color 200ms ease; }
+/* Upload overlay & progress - visual refinements */
+.upload-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2,6,23,0.6);
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+}
+.upload-card {
+    width: 360px;
+    padding: 20px 22px;
+    border-radius: 12px;
+    background: #0f1724;
+    color: #e6eef8;
+    box-shadow: 0 14px 40px rgba(2,6,23,0.6);
+    text-align: center;
+    transform: translateY(-6px);
+    animation: card-pop 220ms cubic-bezier(.2,.9,.2,1);
+}
+@keyframes card-pop {
+    from { opacity: 0; transform: translateY(-12px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.spinner {
+    width: 42px;
+    height: 42px;
+    margin: 6px auto 10px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.06);
+    border-top-color: var(--accent, #7c5cff);
+    animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
+.upload-text { font-weight: 700; margin-bottom: 8px; color: #e6eef8; }
+.progress-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg,var(--accent, #7c5cff),#4f46e5);
+    width: 0%;
+    transition: width 240ms linear;
+}
+
+/* Make dropzone clearly disabled during upload */
+.file-dropzone[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Buttons disabled style */
+.btn-ghost[disabled], .btn-primary[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Toast - animation + theming */
+.toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    min-width: 220px;
+    max-width: 420px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    transform: translateY(10px);
+    opacity: 0;
+    animation: toast-in 260ms cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes toast-in {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Types */
+.toast.success { background: #ecfdf5; color: #065f46; border: 1px solid rgba(6,95,70,0.08); }
+.toast.error { background: #fff1f2; color: #9f1239; border: 1px solid rgba(159,18,57,0.08); }
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .upload-card { background: #0b1220; color: #e6eef8; box-shadow: 0 10px 30px rgba(3,6,15,0.75); }
+    .upload-overlay { background: rgba(0,0,0,0.6); }
+    .progress-bar { background: rgba(255,255,255,0.06); }
+    .toast.success { background: #042e27; color: #bbf7d0; border-color: rgba(11, 92, 77, 0.15); }
+    .toast.error { background: #3b0b12; color: #ffd7de; border-color: rgba(120, 13, 36, 0.15); }
+}
+
+/* If the app uses a .dark class on body */
+body.dark .upload-card { background: #0b1220; color: #e6eef8; }
+body.dark .toast.success { background: #042e27; color: #bbf7d0; }
+body.dark .toast.error { background: #3b0b12; color: #ffd7de; }
