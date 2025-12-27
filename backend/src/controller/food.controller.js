@@ -23,7 +23,7 @@ async function createFood(req, res){
 
 
 async function getFoods(req, res){
-    const foods = await foodModel.find();
+    const foods = await foodModel.find().populate('foodPartnerId');
 
     res.status(200).json({
         foods: foods,
