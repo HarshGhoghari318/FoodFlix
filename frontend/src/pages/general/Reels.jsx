@@ -295,6 +295,14 @@ export default function Reels() {
 
   return (
     <main className="reels-page">
+      <button
+        className="reels-back-btn"
+        onClick={(e) => { e.stopPropagation(); navigate(-1); }}
+        aria-label="Back"
+        title="Back"
+      >
+        ←
+      </button>
       {/* <section className="reels-grid" aria-label="Explore reels">
         {videos.map((item, idx) => (
           <div key={item._id || idx} className="grid-item" onClick={() => openReelAt(idx)}>

@@ -162,6 +162,23 @@ async function getFoodPartner(req, res) {
     res.status(500).json({ message: 'Server error' });
   }
 }
+async function getFoodPartnerByName(req, res) {
+  
+  const { search } = req.params;
+  
+
+  try {
+    const partners = await foodPartnerModel.find({
+     name: { $regex: `^${search}`, $options: "i" }// Case-insensitive search
+    });
+    
+    res.status(200).json({ partners });
+  }
+  catch(err){
+    console.log(err);
+  }
+ 
+}
 
 async function getMe(req, res) {
   try {
@@ -206,4 +223,5 @@ module.exports = {
   getFoodPartner,
   getMe,
   toggleFollowPartner,
+  getFoodPartnerByName
 };

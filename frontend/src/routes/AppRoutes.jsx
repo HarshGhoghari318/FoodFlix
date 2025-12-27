@@ -6,16 +6,16 @@ import UserLogin from '../pages/auth/UserLogin.jsx';
 import FoodPartnerRegister from '../pages/auth/FoodPartnerRegister.jsx';
 import FoodPartnerLogin from '../pages/auth/FoodPartnerLogin.jsx';
 import CreateFood from '../pages/food-partner/CreateFood.jsx';
-import Profile from '../pages/Profile/PartnerProfile.jsx';
 import Reels from '../pages/general/Reels.jsx';
 import PartnerProfile from '../pages/Profile/PartnerProfile.jsx';
-
+import FoodPartnerSearch from '../pages/general/FoodPartnerSearch.jsx';
 
 const AppRoutes = () => {
     return (
            
             <Routes>
                 <Route path="/reels" element={<Reels />} />
+                <Route path="/home" element={<FoodPartnerSearch/>} />
                 <Route path="/profile/:id" element={<PartnerProfile />} />
                 <Route path="/create-food" element={<CreateFood />} />
                 <Route path="/" element={<ChooseRegister />} />
