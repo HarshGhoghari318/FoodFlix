@@ -20,7 +20,7 @@ const FoodPartnerLogin = () => {
 
     console.log(response.data);
 
-    navigate("/create-food"); // Redirect to create food page after login
+    navigate(`/profile/${response.data.foodPartner._id}`); // Redirect to partner profile after login
 
   };
 

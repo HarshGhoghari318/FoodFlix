@@ -21,7 +21,7 @@ const UserRegister = () => {
         fullName: firstName + " " + lastName,
         email,
         password,
-        Gender: gender,
+        gender: gender,
       },
       {
         withCredentials: true,

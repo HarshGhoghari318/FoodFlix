@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema(
       default: [],
       required: false,
     },
+    savedReels: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Food",
+    }
   },
   { timestamps: true }
 );
