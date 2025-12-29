@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/food',foodRoutes);
+app.use('/api/getpartnerFtoken',authRoutes)
 
 
 

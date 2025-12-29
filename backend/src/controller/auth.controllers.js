@@ -180,6 +180,22 @@ async function getFoodPartnerByName(req, res) {
  
 }
 
+async function getTokenPartner(req,res){
+  if(req.user && req.user=="user"){
+    res.status(200).json({partner:false})
+  }
+  else
+    {
+    try{
+    const partner = await foodPartnerModel.findById(req.foodPartner._id)
+    console.log(partner)
+    res.status(200).json({partner:true})  
+  }catch(err){
+    console.log(err)
+  }
+  }
+}
+
 async function getMe(req, res) {
   try {
     const user = await userModel.findById(req.user._id);
@@ -223,5 +239,7 @@ module.exports = {
   getFoodPartner,
   getMe,
   toggleFollowPartner,
-  getFoodPartnerByName
+  getFoodPartnerByName,
+  getTokenPartner
+  
 };

@@ -9,13 +9,15 @@ import CreateFood from '../pages/food-partner/CreateFood.jsx';
 import Reels from '../pages/general/Reels.jsx';
 import PartnerProfile from '../pages/Profile/PartnerProfile.jsx';
 import FoodPartnerSearch from '../pages/general/FoodPartnerSearch.jsx';
+import UserProfile from '../pages/Profile/UserProfile.jsx';
 
 const AppRoutes = () => {
     return (
            
             <Routes>
                 <Route path="/reels" element={<Reels />} />
-                <Route path="/home" element={<FoodPartnerSearch/>} />
+                <Route path='/userprofile' element={<UserProfile/>} />
+                <Route path="/search" element={<FoodPartnerSearch/>} />
                 <Route path="/profile/:id" element={<PartnerProfile />} />
                 <Route path="/create-food" element={<CreateFood />} />
                 <Route path="/" element={<ChooseRegister />} />

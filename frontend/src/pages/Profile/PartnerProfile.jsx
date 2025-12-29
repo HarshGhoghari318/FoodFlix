@@ -11,7 +11,7 @@ function PartnerProfile() {
   const [partner, setPartner] = useState(state?.partner || null);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [isPartner,setPartnerRole]=useState(null)
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -33,10 +33,26 @@ function PartnerProfile() {
       setLoading(false);
     }
   };
-
+  const getPartnerMe = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:3000/api/getpartnerFtoken/me",
+        { withCredentials: true }
+      );
+      console.log(res)
+      setPartnerRole(res.data.partner)
+    } catch (err) {
+      console.error(err);
+      
+    }
+  }
   useEffect(() => {
     fetchPartner();
+    
   }, [id]);
+  useEffect(()=>{
+    getPartnerMe();
+  },[])
 
   useEffect(() => {
     if (!isViewerOpen) return;
@@ -124,13 +140,13 @@ function PartnerProfile() {
         )}
       </section>
 
-      {/* CREATE REEL BUTTON */}
-      <button
+      {isPartner ?  <button
         className="create-reel-btn"
         onClick={() => navigate("/create-food")}
       >
         + Create Reel
-      </button>
+      </button>: ""}
+      {/* */}
 
       {/* REELS VIEWER */}
       {isViewerOpen && (

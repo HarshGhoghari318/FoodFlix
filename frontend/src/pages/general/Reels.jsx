@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../style/reels.css";
+import "../../style/reelsNav.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ReelsBottomNav from "./BottomNav";
 
 export default function Reels() {
   const feedRef = useRef(null);
@@ -294,15 +296,10 @@ export default function Reels() {
   };
 
   return (
+    <>
+    
     <main className="reels-page">
-      <button
-        className="reels-back-btn"
-        onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-        aria-label="Back"
-        title="Back"
-      >
-        ←
-      </button>
+    
       {/* <section className="reels-grid" aria-label="Explore reels">
         {videos.map((item, idx) => (
           <div key={item._id || idx} className="grid-item" onClick={() => openReelAt(idx)}>
@@ -450,5 +447,8 @@ export default function Reels() {
         })}
       </section>
     </main>
+    <ReelsBottomNav/>
+
+    </>
   );
 }

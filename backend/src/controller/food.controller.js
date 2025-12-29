@@ -1,9 +1,11 @@
 const foodModel = require("../models/food.model.js");
+const userModel = require("../models/userModel.js");
 const { uploadFile } = require("../services/storage.service.js");
 const { v4: uuid } = require("uuid");
 
 async function createFood(req, res) {
   const fileResult = await uploadFile(req.file.buffer, uuid());
+  console.log(req.foodPartner)
 
   try {
     const foodData = await foodModel.create({
@@ -30,7 +32,8 @@ async function getFoods(req, res) {
     .find()
     .populate("foodPartnerId")
     .populate("likes")
-    .populate("comments.user");
+    .populate("comments.user")
+    .populate("savedBy");
 
   res.status(200).json({
     foods: foods,
@@ -54,6 +57,26 @@ async function toggleSaveFood(req, res) {
             saved = false;
         }
         await food.save();
+
+        // persist saved list on the user as well
+        try {
+          const user = await userModel.findById(userId);
+          if (user) {
+            user.savedReels = user.savedReels || [];
+            if (saved) {
+              if (!user.savedReels.some((sid) => String(sid) === String(food._id))) {
+                user.savedReels.push(food._id);
+              }
+            } else {
+              user.savedReels = user.savedReels.filter((sid) => String(sid) !== String(food._id));
+            }
+            await user.save();
+            return res.status(200).json({ saved, savedReels: user.savedReels });
+          }
+        } catch (errUser) {
+          console.error("Failed to update user savedReels", errUser);
+        }
+
         res.status(200).json({ saved });
     } catch (err) {
       res.status(500).json({ message: "Server error" });
