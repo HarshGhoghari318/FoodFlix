@@ -51,7 +51,7 @@ function PartnerProfile() {
         "http://localhost:3000/api/getpartnerFtoken/me",
         { withCredentials: true }
       );
-      console.log(res);
+      
       setPartnerRole(res.data.partner);
     } catch (err) {
       console.error(err);

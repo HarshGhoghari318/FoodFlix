@@ -18,7 +18,7 @@ const FoodPartnerLogin = () => {
       password
     }, { withCredentials: true });
 
-    console.log(response.data);
+    
 
     navigate(`/profile/${response.data.foodPartner._id}`); // Redirect to partner profile after login
 

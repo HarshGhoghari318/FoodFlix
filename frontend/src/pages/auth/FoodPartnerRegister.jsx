@@ -27,7 +27,7 @@ const FoodPartnerRegister = () => {
       address
     }, { withCredentials: true })
       .then(response => {
-        console.log(response.data);
+        
         navigate("/food-partner/login"); // Redirect to login page after successful registration
       })
       .catch(error => {
