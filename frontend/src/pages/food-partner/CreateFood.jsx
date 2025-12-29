@@ -130,7 +130,7 @@ const CreateFood = () => {
       setDescription("");
       setVideoFile(null);
       setVideoURL("");
-      console.log(response.data);
+      
     } catch (err) {
       setIsUploading(false);
       showToast(err?.response?.data?.message || "Upload failed", "error");
