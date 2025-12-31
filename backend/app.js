@@ -1,6 +1,6 @@
 
 
-import express from ('express');
+import express from 'express';
 const app = express();
 import connectDB from'./src/db/db.js';
 import foodRoutes from './src/routes/food.routes.js';
