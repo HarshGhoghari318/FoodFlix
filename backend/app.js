@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","https://food-flix-h13.vercel.app"],
     credentials: true
 }));
 
