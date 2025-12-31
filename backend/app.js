@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","https://food-flix-h13.vercel.app"],
     credentials: true
 }));
 

@@ -4,6 +4,7 @@ import "../../style/reelsNav.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReelsBottomNav from "./BottomNav";
+import API_URL from "../../config/api.js";
 
 export default function Reels() {
   const feedRef = useRef(null);
@@ -30,7 +31,7 @@ export default function Reels() {
   const GetData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/food/getfoods",
+        `${API_URL}/api/food/getfoods`,
         { withCredentials: true }
       );
       const foods = response.data.foods || [];
@@ -57,7 +58,7 @@ export default function Reels() {
 
   const fetchCurrentUser = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/auth/user/me", {
+      const res = await axios.get(`${API_URL}/api/auth/user/me`, {
         withCredentials: true,
       });
       setCurrentUser(res.data.user);
@@ -196,7 +197,7 @@ export default function Reels() {
     if (!partnerId) return;
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/auth/user/follow/${partnerId}`,
+        `${API_URL}/api/auth/user/follow/${partnerId}`,
         {},
         { withCredentials: true }
       );
@@ -214,7 +215,7 @@ export default function Reels() {
     if (e) e.stopPropagation();
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/food/like/${foodId}`,
+        `${API_URL}/api/food/like/${foodId}`,
         {},
         { withCredentials: true }
       );
@@ -239,7 +240,7 @@ export default function Reels() {
   const fetchComments = async (foodId) => {
     setCommentLoading(true);
     try {
-      const res = await axios.get(`http://localhost:3000/api/food/comments/${foodId}`, {
+      const res = await axios.get(`${API_URL}/api/food/comments/${foodId}`, {
         withCredentials: true,
       });
       // show newest comments first (reverse server order)
@@ -274,7 +275,7 @@ export default function Reels() {
     try {
       setCommentSubmitting(true);
       const res = await axios.post(
-        `http://localhost:3000/api/food/comment/${commentFoodId}`,
+        `${API_URL}/api/food/comment/${commentFoodId}`,
         { text: commentText.trim() },
         { withCredentials: true }
       );
@@ -315,7 +316,7 @@ export default function Reels() {
     if (e) e.stopPropagation();
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/food/share/${food._id}`,
+        `${API_URL}/api/food/share/${food._id}`,
         {},
         { withCredentials: true }
       );

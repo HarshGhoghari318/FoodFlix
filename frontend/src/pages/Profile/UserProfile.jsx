@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../style/profile.css";
+import API_URL from "../../config/api.js";
 
 function UserProfile() {
   const [user, setUser] = useState(null);
@@ -11,7 +12,7 @@ function UserProfile() {
   const fetchUser = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3000/api/auth/user/me", {
+      const res = await axios.get(`${API_URL}/api/auth/user/me`, {
         withCredentials: true,
       });
       setUser(res.data.user);
@@ -31,7 +32,7 @@ function UserProfile() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/auth/user/logout", {
+      await axios.get(`${API_URL}/api/auth/user/logout`, {
         withCredentials: true,
       });
       navigate("/user/login");

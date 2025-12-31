@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import "../../style/create-food.css";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../config/api.js";
 
 const CreateFood = () => {
   const [name, setName] = useState("");
@@ -106,7 +107,7 @@ const CreateFood = () => {
       setUploadProgress(0);
 
       const response = await axios.post(
-        "http://localhost:3000/api/food/create",
+        `${API_URL}/api/food/create`,
         formData,
         {
           withCredentials: true,

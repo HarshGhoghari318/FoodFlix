@@ -3,6 +3,7 @@ import "../../style/home.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ReelsBottomNav from "./BottomNav";
+import API_URL from "../../config/api.js";
 
 export default function FoodPartnerSearch() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function FoodPartnerSearch() {
 
   const getSearches = async () => {
     const response = await axios.get(
-      `http://localhost:3000/api/auth/foodpartner/search/${search}`,
+      `${API_URL}/api/auth/foodpartner/search/${search}`,
       { withCredentials: true }
     );
     setPartners(response.data.partners);

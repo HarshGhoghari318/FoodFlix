@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../../style/profile.css";
+import API_URL from "../../config/api.js";
 
 function PartnerProfile() {
   const { id } = useParams();
@@ -19,7 +20,7 @@ function PartnerProfile() {
   const handleLogout = async ()=> {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/auth/foodpartner/logout",
+        `${API_URL}/api/auth/foodpartner/logout`,
         { withCredentials: true }
       );
     navigate("/food-partner/login")
@@ -33,7 +34,7 @@ function PartnerProfile() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:3000/api/auth/foodpartner/${id}`,
+        `${API_URL}/api/auth/foodpartner/${id}`,
         { withCredentials: true }
       );
 
@@ -48,7 +49,7 @@ function PartnerProfile() {
   const getPartnerMe = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/getpartnerFtoken/me",
+        `${API_URL}/api/getpartnerFtoken/me`,
         { withCredentials: true }
       );
       

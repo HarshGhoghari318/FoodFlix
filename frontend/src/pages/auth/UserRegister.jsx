@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../style/auth-shared.css";
 import axios from "axios";
+import API_URL from '../../config/api.js';
 
 const UserRegister = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const UserRegister = () => {
     const gender = e.target.gender.value;
 
     const response = await axios.post(
-      "http://localhost:3000/api/auth/user/register",
+      `${API_URL}/api/auth/user/register`,
       {
         fullName: firstName + " " + lastName,
         email,
