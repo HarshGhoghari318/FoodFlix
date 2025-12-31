@@ -1,13 +1,13 @@
 
-require("dotenv").config();
-const express = require('express');
-const app = express();
-const connectDB = require('./src/db/db.js');
-const foodRoutes = require('./src/routes/food.routes.js');
-const authRoutes = require('./src/routes/auth-route.js');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
 
+import express from ('express');
+const app = express();
+import connectDB from'./src/db/db.js';
+import foodRoutes from './src/routes/food.routes.js';
+import authRoutes from './src/routes/auth-route.js';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+dotenv.config();
 app.use(cors({
     origin: ["http://localhost:5173","https://food-flix-h13.vercel.app"],
     credentials: true

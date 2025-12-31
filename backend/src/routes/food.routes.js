@@ -1,8 +1,8 @@
-const express = require('express');
-const authMiddleware=require("../middlewares/auth.middleware.js");
-const foodController=require("../controller/food.controller.js");
-const multer = require('multer');
-const router = express.Router();
+import express from  'express';
+import authMiddleware from "../middlewares/auth.middleware.js";
+import foodController from "../controller/food.controller.js";
+import multer from  'multer';
+const router =express.Router();
 
 const upload = multer({
     storage: multer.memoryStorage(),

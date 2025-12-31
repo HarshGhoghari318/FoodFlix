@@ -1,6 +1,6 @@
-const foodModel = require("../models/food.model.js");
-const userModel = require("../models/userModel.js");
-const { uploadFile } = require("../services/storage.service.js");
+import foodModel from "../models/food.model.js";
+import userModel from "../models/userModel.js";
+import { uploadFile } from "../services/storage.service.js";
 import { v4 as uuid } from "uuid";
 
 async function createFood(req, res) {

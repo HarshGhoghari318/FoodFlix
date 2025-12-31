@@ -1,7 +1,7 @@
-const express = require('express');
-const authController = require('../controller/auth.controllers.js');
-const { authFoodUserMiddleware, authFoodPartnerMiddleware } = require('../middlewares/auth.middleware');
-const { route } = require('./food.routes.js');
+import express from 'express';
+import authController from '../controller/auth.controllers.js';
+import{ authFoodUserMiddleware, authFoodPartnerMiddleware } from '../middlewares/auth.middleware';
+
 const router = express.Router();
 
 

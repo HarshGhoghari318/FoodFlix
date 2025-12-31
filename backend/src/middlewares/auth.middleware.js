@@ -1,6 +1,6 @@
-const foodPartnerModel = require("../models/foodpartner.model.js");
-const userModel = require("../models/userModel.js");
-const jwt = require("jsonwebtoken");
+import foodPartnerModel from "../models/foodpartner.model.js";
+import userModel from"../models/userModel.js";
+import jwt from"jsonwebtoken";
 
 async function authFoodPartnerMiddleware(req, res, next) {
     const token = req.cookies.token;
