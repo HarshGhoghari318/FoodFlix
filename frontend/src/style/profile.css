@@ -73,15 +73,8 @@
   margin: 2px 0;
   font-size: 15px;
 }
-@import "./theme.css";
 
-/* PAGE */
-.profile-page-dark {
-  min-height: 100vh;
-  background: linear-gradient(180deg, #0b1024, #050714);
-  color: white;
-  padding: 14px;
-}
+/* PROFILE HEADER */
 
 /* TOP BAR */
 .profile-topbar-dark {
